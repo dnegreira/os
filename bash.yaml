@@ -2,7 +2,7 @@ package:
   name: bash
   version: 5.2.37
   epoch: 30
-  description: "GNU bourne again shell"
+  description: "GNU bourne again shell broken commit"
   copyright:
     - license: GPL-3.0-or-later
   dependencies:
