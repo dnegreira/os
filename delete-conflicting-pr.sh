@@ -23,6 +23,7 @@ for PR_INFO in $PR_LIST; do
   BRANCH_NAME=$(echo "$PR_INFO" | awk '{print $4}')
 
   echo "PR #$PR_NUMBER in $REPO by @$PR_OWNER (branch: $BRANCH_NAME)"
+  echo "https://github.com/$REPO_OWNER/$REPO/$PR_NUMBER"
 
   # Prompt to delete the PR and branch
   read -p "Do you want to delete PR #$PR_NUMBER and branch '$BRANCH_NAME'? (y/n): " DELETE_CONFIRM
