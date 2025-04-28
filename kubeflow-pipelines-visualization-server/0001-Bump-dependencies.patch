@@ -25,15 +25,16 @@ Once generated, run `git diff` and use its output to replace the below content.
 
 ---
 diff --git a/backend/src/apiserver/visualization/requirements.in b/backend/src/apiserver/visualization/requirements.in
-index e24773c..46be981 100644
+index e24773c..300473c 100644
 --- a/backend/src/apiserver/visualization/requirements.in
 +++ b/backend/src/apiserver/visualization/requirements.in
-@@ -1,18 +1,20 @@
+@@ -1,18 +1,21 @@
 -bokeh==1.2.0
 +bokeh==2.3.2  # required for support for Jinja2 version
 +cryptography>=44.0.1,<45
  gcsfs==0.2.3
  google-api-python-client==1.7.*
++h11==0.16.0
  itables==0.1.0
 -ipykernel==5.1.1
 -ipython==7.12.0
@@ -60,7 +61,7 @@ index e24773c..46be981 100644
  tornado==6.*
 +werkzeug==3.0.6  # CVE-2024-49766 GHSA-f9vj-2wh5-fj8j, CVE-2024-49767 GHSA-q34m-jh98-gwm2
 diff --git a/backend/src/apiserver/visualization/requirements.txt b/backend/src/apiserver/visualization/requirements.txt
-index fa15911..641e5ff 100644
+index fa15911..bbab5aa 100644
 --- a/backend/src/apiserver/visualization/requirements.txt
 +++ b/backend/src/apiserver/visualization/requirements.txt
 @@ -1,24 +1,27 @@
@@ -85,23 +86,26 @@ index fa15911..641e5ff 100644
 -anyio==4.5.2
 +annotated-types==0.7.0
 +    # via pydantic
-+anyio==4.8.0
++anyio==4.9.0
      # via
      #   httpx
      #   jupyter-server
 -apache-beam[gcp]==2.46.0
-+apache-beam[gcp]==2.63.0
++apache-beam[gcp]==2.64.0
      # via
 -    #   apache-beam
      #   tensorflow-data-validation
      #   tensorflow-model-analysis
      #   tfx-bsl
-@@ -32,54 +35,74 @@ astunparse==1.6.3
+@@ -30,56 +33,76 @@ arrow==1.3.0
+     # via isoduration
+ astunparse==1.6.3
      # via tensorflow
- async-lru==2.0.4
+-async-lru==2.0.4
++async-lru==2.0.5
      # via jupyterlab
 -attrs==24.3.0
-+attrs==25.1.0
++attrs==25.3.0
      # via
      #   jsonschema
      #   referencing
@@ -113,7 +117,7 @@ index fa15911..641e5ff 100644
 -beautifulsoup4==4.12.3
 +backports-tarfile==1.2.0
 +    # via jaraco-context
-+beautifulsoup4==4.13.3
++beautifulsoup4==4.13.4
      # via nbconvert
 -bleach[css]==6.1.0
 -    # via
@@ -131,7 +135,7 @@ index fa15911..641e5ff 100644
      #   apache-beam
      #   google-auth
 -certifi==2024.12.14
-+certifi==2025.1.31
++certifi==2025.4.26
      # via
      #   httpcore
      #   httpx
@@ -156,13 +160,14 @@ index fa15911..641e5ff 100644
 +    #   ipywidgets
  crcmod==1.7
      # via apache-beam
-+cryptography==44.0.1
+-decorator==5.1.1
++cryptography==44.0.2
 +    # via
 +    #   -r backend/src/apiserver/visualization/requirements.in
 +    #   secretstorage
-+debugpy==1.8.12
++debugpy==1.8.14
 +    # via ipykernel
- decorator==5.1.1
++decorator==5.2.1
      # via
      #   gcsfs
      #   ipython
@@ -203,7 +208,7 @@ index fa15911..641e5ff 100644
 -    # via -r -
 -google-api-core[grpc]==2.24.0
 +    # via -r backend/src/apiserver/visualization/requirements.in
-+google-api-core[grpc]==2.24.1
++google-api-core[grpc]==2.24.2
      # via
 -    #   google-api-core
 +    #   apache-beam
@@ -228,11 +233,11 @@ index fa15911..641e5ff 100644
  google-apitools==0.5.31
      # via apache-beam
 -google-auth==2.37.0
-+google-auth==2.38.0
++google-auth==2.39.0
      # via
      #   apache-beam
      #   gcsfs
-@@ -125,73 +151,96 @@ google-auth==2.37.0
+@@ -125,73 +151,97 @@ google-auth==2.37.0
      #   google-api-python-client
      #   google-auth-httplib2
      #   google-auth-oauthlib
@@ -262,22 +267,22 @@ index fa15911..641e5ff 100644
 -    #   gcsfs
 -    #   tensorboard
 -google-cloud-bigquery==3.27.0
-+google-auth-oauthlib==1.2.1
++google-auth-oauthlib==1.2.2
 +    # via gcsfs
-+google-cloud-aiplatform==1.81.0
++google-cloud-aiplatform==1.90.0
      # via apache-beam
 -google-cloud-bigquery-storage==2.16.2
-+google-cloud-bigquery==3.29.0
++google-cloud-bigquery==3.31.0
 +    # via
 +    #   apache-beam
 +    #   google-cloud-aiplatform
-+google-cloud-bigquery-storage==2.28.0
++google-cloud-bigquery-storage==2.31.0
      # via apache-beam
 -google-cloud-bigtable==1.7.3
-+google-cloud-bigtable==2.28.1
++google-cloud-bigtable==2.30.1
      # via apache-beam
 -google-cloud-core==2.4.1
-+google-cloud-core==2.4.2
++google-cloud-core==2.4.3
      # via
      #   apache-beam
      #   google-cloud-bigquery
@@ -286,43 +291,45 @@ index fa15911..641e5ff 100644
      #   google-cloud-spanner
 -google-cloud-datastore==1.15.5
 +    #   google-cloud-storage
-+google-cloud-datastore==2.20.2
++google-cloud-datastore==2.21.0
      # via apache-beam
 -google-cloud-dlp==3.18.0
-+google-cloud-dlp==3.27.0
++google-cloud-dlp==3.29.0
      # via apache-beam
 -google-cloud-language==1.3.2
-+google-cloud-language==2.17.0
++google-cloud-language==2.17.1
      # via apache-beam
 -google-cloud-pubsub==2.21.4
-+google-cloud-pubsub==2.28.0
++google-cloud-pubsub==2.29.0
      # via
      #   apache-beam
      #   google-cloud-pubsublite
- google-cloud-pubsublite==1.11.1
+-google-cloud-pubsublite==1.11.1
++google-cloud-pubsublite==1.12.0
      # via apache-beam
 -google-cloud-recommendations-ai==0.7.1
-+google-cloud-recommendations-ai==0.10.16
++google-cloud-recommendations-ai==0.10.17
      # via apache-beam
 -google-cloud-spanner==3.46.0
-+google-cloud-resource-manager==1.14.1
++google-cloud-resource-manager==1.14.2
 +    # via google-cloud-aiplatform
-+google-cloud-spanner==3.52.0
++google-cloud-spanner==3.53.0
      # via apache-beam
 -google-cloud-videointelligence==1.16.3
 +google-cloud-storage==2.19.0
 +    # via
 +    #   apache-beam
 +    #   google-cloud-aiplatform
-+google-cloud-videointelligence==2.16.0
++google-cloud-videointelligence==2.16.1
      # via apache-beam
 -google-cloud-vision==3.7.2
-+google-cloud-vision==3.10.0
++google-cloud-vision==3.10.1
      # via apache-beam
 -google-crc32c==1.5.0
 -    # via google-resumable-media
-+google-crc32c==1.6.0
++google-crc32c==1.7.1
 +    # via
++    #   google-cloud-bigtable
 +    #   google-cloud-storage
 +    #   google-resumable-media
  google-pasta==0.2.0
@@ -333,14 +340,14 @@ index fa15911..641e5ff 100644
 +    # via
 +    #   google-cloud-bigquery
 +    #   google-cloud-storage
-+googleapis-common-protos[grpc]==1.68.0
++googleapis-common-protos[grpc]==1.70.0
      # via
      #   google-api-core
      #   grpc-google-iam-v1
      #   grpcio-status
      #   tensorflow-metadata
 -grpc-google-iam-v1==0.12.7
-+grpc-google-iam-v1==0.14.0
++grpc-google-iam-v1==0.14.2
      # via
      #   google-cloud-bigtable
      #   google-cloud-pubsub
@@ -353,7 +360,7 @@ index fa15911..641e5ff 100644
      # via
      #   apache-beam
      #   google-api-core
-@@ -204,20 +253,22 @@ grpcio==1.69.0
+@@ -204,20 +254,24 @@ grpcio==1.69.0
      #   tensorboard
      #   tensorflow
      #   tensorflow-serving-api
@@ -363,26 +370,34 @@ index fa15911..641e5ff 100644
      #   google-api-core
      #   google-cloud-pubsub
      #   google-cloud-pubsublite
- h11==0.14.0
-     # via httpcore
+-h11==0.14.0
+-    # via httpcore
 -h5py==3.11.0
 -    # via tensorflow
++h11==0.16.0
++    # via
++    #   -r backend/src/apiserver/visualization/requirements.in
++    #   httpcore
 +h5py==3.13.0
 +    # via
 +    #   keras
 +    #   tensorflow
  hdfs==2.7.3
      # via apache-beam
- httpcore==1.0.7
+-httpcore==1.0.7
++httpcore==1.0.9
      # via httpx
 -httplib2==0.21.0
 +httplib2==0.22.0
      # via
      #   apache-beam
      #   google-api-python-client
-@@ -234,24 +285,15 @@ idna==3.10
+@@ -232,26 +286,17 @@ idna==3.10
+     #   httpx
+     #   jsonschema
      #   requests
- importlib-metadata==8.5.0
+-importlib-metadata==8.5.0
++importlib-metadata==8.6.1
      # via
 -    #   jupyter-client
 -    #   jupyter-lsp
@@ -411,7 +426,7 @@ index fa15911..641e5ff 100644
      #   ipykernel
      #   ipywidgets
      #   tensorflow-model-analysis
-@@ -262,51 +304,66 @@ ipywidgets==7.8.5
+@@ -262,51 +307,66 @@ ipywidgets==7.8.5
  isoduration==20.11.0
      # via jsonschema
  itables==0.1.0
@@ -426,13 +441,13 @@ index fa15911..641e5ff 100644
  jedi==0.19.2
      # via ipython
 -jinja2==3.1.5
-+jeepney==0.8.0
-+    # via
++jeepney==0.9.0
+     # via
+-    #   -r -
 +    #   keyring
 +    #   secretstorage
 +jinja2==3.1.6
-     # via
--    #   -r -
++    # via
 +    #   -r backend/src/apiserver/visualization/requirements.in
      #   bokeh
      #   jupyter-server
@@ -445,7 +460,8 @@ index fa15911..641e5ff 100644
 +    #   nltk
      #   scikit-learn
      #   tensorflow-data-validation
- json5==0.10.0
+-json5==0.10.0
++json5==0.12.0
      # via jupyterlab-server
 +jsonpickle==3.4.2
 +    # via apache-beam
@@ -458,7 +474,7 @@ index fa15911..641e5ff 100644
      #   jupyterlab-server
      #   nbformat
 -jsonschema-specifications==2023.12.1
-+jsonschema-specifications==2024.10.1
++jsonschema-specifications==2025.4.1
      # via jsonschema
  jupyter-client==8.6.3
      # via
@@ -486,23 +502,23 @@ index fa15911..641e5ff 100644
      # via
      #   jupyter-lsp
      #   jupyterlab
-@@ -315,7 +372,7 @@ jupyter-server==2.14.2
+@@ -315,7 +375,7 @@ jupyter-server==2.14.2
      #   notebook-shim
  jupyter-server-terminals==0.5.3
      # via jupyter-server
 -jupyterlab==4.1.5
-+jupyterlab==4.3.5
++jupyterlab==4.3.6
      # via notebook
  jupyterlab-pygments==0.3.0
      # via nbconvert
-@@ -325,49 +382,81 @@ jupyterlab-server==2.27.3
+@@ -325,49 +385,81 @@ jupyterlab-server==2.27.3
      #   notebook
  jupyterlab-widgets==1.1.11
      # via ipywidgets
 -keras==2.10.0
 -    # via tensorflow
 -keras-preprocessing==1.1.2
-+keras==3.9.0
++keras==3.9.2
      # via tensorflow
 +keyring==25.6.0
 +    # via keyrings-google-artifactregistry-auth
@@ -510,9 +526,10 @@ index fa15911..641e5ff 100644
 +    # via apache-beam
  libclang==18.1.1
      # via tensorflow
-+lxml==5.3.1
+-markdown==3.7
++lxml==5.4.0
 +    # via sacrebleu
- markdown==3.7
++markdown==3.8
      # via tensorboard
 -markupsafe==2.0.1
 +markdown-it-py==3.0.0
@@ -530,18 +547,18 @@ index fa15911..641e5ff 100644
 +    #   ipython
 +mdurl==0.1.2
 +    # via markdown-it-py
-+mistune==3.1.2
++mistune==3.1.3
      # via nbconvert
 -nbclient==0.10.1
 +ml-dtypes==0.3.2
 +    # via
 +    #   keras
 +    #   tensorflow
-+more-itertools==10.6.0
++more-itertools==10.7.0
 +    # via
 +    #   jaraco-classes
 +    #   jaraco-functools
-+namex==0.0.8
++namex==0.0.9
 +    # via keras
 +nbclient==0.10.2
      # via nbconvert
@@ -590,34 +607,35 @@ index fa15911..641e5ff 100644
      #   tensorboard
      #   tensorflow
      #   tensorflow-data-validation
-@@ -377,11 +466,22 @@ oauth2client==4.1.3
+@@ -377,23 +469,39 @@ oauth2client==4.1.3
      # via google-apitools
  oauthlib==3.2.2
      # via requests-oauthlib
 -objsize==0.6.1
 +objsize==0.7.1
      # via apache-beam
-+opentelemetry-api==1.30.0
++opentelemetry-api==1.32.1
 +    # via
 +    #   google-cloud-pubsub
 +    #   opentelemetry-sdk
 +    #   opentelemetry-semantic-conventions
-+opentelemetry-sdk==1.30.0
++opentelemetry-sdk==1.32.1
 +    # via google-cloud-pubsub
-+opentelemetry-semantic-conventions==0.51b0
++opentelemetry-semantic-conventions==0.53b1
 +    # via opentelemetry-sdk
  opt-einsum==3.4.0
      # via tensorflow
 -orjson==3.10.14
-+optree==0.14.0
++optree==0.15.0
 +    # via keras
-+orjson==3.10.15
++orjson==3.10.16
      # via apache-beam
  overrides==7.7.0
      # via
-@@ -389,11 +489,16 @@ overrides==7.7.0
+     #   google-cloud-pubsublite
      #   jupyter-server
- packaging==24.2
+-packaging==24.2
++packaging==25.0
      # via
 +    #   apache-beam
      #   bokeh
@@ -632,7 +650,7 @@ index fa15911..641e5ff 100644
      #   nbconvert
      #   tensorflow
  pandas==1.5.3
-@@ -410,30 +515,41 @@ pexpect==4.9.0
+@@ -410,30 +518,42 @@ pexpect==4.9.0
      # via ipython
  pickleshare==0.7.5
      # via ipython
@@ -640,11 +658,12 @@ index fa15911..641e5ff 100644
 -    # via bokeh
 -pkgutil-resolve-name==1.3.10
 -    # via jsonschema
-+pillow==11.1.0
+-platformdirs==4.3.6
++pillow==11.2.1
 +    # via
 +    #   bokeh
 +    #   tensorflow-model-analysis
- platformdirs==4.3.6
++platformdirs==4.3.7
      # via jupyter-core
 +pluggy==1.5.0
 +    # via keyrings-google-artifactregistry-auth
@@ -653,10 +672,10 @@ index fa15911..641e5ff 100644
  prometheus-client==0.21.1
      # via jupyter-server
 -prompt-toolkit==3.0.48
-+prompt-toolkit==3.0.50
++prompt-toolkit==3.0.51
      # via ipython
 -proto-plus==1.25.0
-+proto-plus==1.26.0
++proto-plus==1.26.1
      # via
      #   apache-beam
      #   google-api-core
@@ -667,13 +686,14 @@ index fa15911..641e5ff 100644
      #   google-cloud-dlp
 +    #   google-cloud-language
      #   google-cloud-pubsub
++    #   google-cloud-pubsublite
      #   google-cloud-recommendations-ai
 +    #   google-cloud-resource-manager
      #   google-cloud-spanner
 +    #   google-cloud-videointelligence
      #   google-cloud-vision
 -protobuf==3.19.6
-+protobuf==4.25.6
++protobuf==4.25.7
      # via
      #   apache-beam
      #   google-api-core
@@ -681,7 +701,7 @@ index fa15911..641e5ff 100644
      #   google-cloud-bigquery-storage
      #   google-cloud-bigtable
      #   google-cloud-datastore
-@@ -441,6 +557,7 @@ protobuf==3.19.6
+@@ -441,6 +561,7 @@ protobuf==3.19.6
      #   google-cloud-language
      #   google-cloud-pubsub
      #   google-cloud-recommendations-ai
@@ -689,7 +709,7 @@ index fa15911..641e5ff 100644
      #   google-cloud-spanner
      #   google-cloud-videointelligence
      #   google-cloud-vision
-@@ -455,16 +572,20 @@ protobuf==3.19.6
+@@ -455,27 +576,35 @@ protobuf==3.19.6
      #   tensorflow-model-analysis
      #   tensorflow-serving-api
      #   tfx-bsl
@@ -706,41 +726,49 @@ index fa15911..641e5ff 100644
      #   tensorflow-data-validation
      #   tensorflow-model-analysis
      #   tfx-bsl
-+pyarrow-hotfix==0.6
++pyarrow-hotfix==0.7
 +    # via apache-beam
  pyasn1==0.6.1
      # via
      #   oauth2client
-@@ -476,6 +597,10 @@ pyasn1-modules==0.4.1
+     #   pyasn1-modules
+     #   rsa
+-pyasn1-modules==0.4.1
++pyasn1-modules==0.4.2
+     # via
+     #   google-auth
      #   oauth2client
  pycparser==2.22
      # via cffi
-+pydantic==2.10.6
++pydantic==2.11.3
 +    # via google-cloud-aiplatform
-+pydantic-core==2.27.2
++pydantic-core==2.33.1
 +    # via pydantic
  pydot==1.4.2
      # via apache-beam
  pyfarmhash==0.3.2
-@@ -484,9 +609,10 @@ pygments==2.19.1
+@@ -484,9 +613,10 @@ pygments==2.19.1
      # via
      #   ipython
      #   nbconvert
 -pymongo==3.13.0
 +    #   rich
-+pymongo==4.11.1
++pymongo==4.12.0
      # via apache-beam
 -pyparsing==3.1.4
-+pyparsing==3.2.1
++pyparsing==3.2.3
      # via
      #   httplib2
      #   pydot
-@@ -500,36 +626,44 @@ python-dateutil==2.9.0.post0
+@@ -498,38 +628,46 @@ python-dateutil==2.9.0.post0
+     #   google-cloud-bigquery
+     #   jupyter-client
      #   pandas
- python-json-logger==3.2.1
+-python-json-logger==3.2.1
++python-json-logger==3.3.0
      # via jupyter-events
 -pytz==2024.2
-+pytz==2025.1
++pytz==2025.2
      # via
      #   apache-beam
 -    #   babel
@@ -751,7 +779,7 @@ index fa15911..641e5ff 100644
      #   bokeh
      #   jupyter-events
 -pyzmq==26.2.0
-+pyzmq==26.2.1
++pyzmq==26.4.0
      # via
 +    #   ipykernel
      #   jupyter-client
@@ -786,20 +814,21 @@ index fa15911..641e5ff 100644
  requests-oauthlib==2.0.0
      # via google-auth-oauthlib
  rfc3339-validator==0.1.4
-@@ -540,7 +674,11 @@ rfc3986-validator==0.1.1
+@@ -540,94 +678,103 @@ rfc3986-validator==0.1.1
      # via
      #   jsonschema
      #   jupyter-events
 -rpds-py==0.20.1
-+rich==13.9.4
++rich==14.0.0
 +    # via keras
 +rouge-score==0.1.2
 +    # via tensorflow-model-analysis
-+rpds-py==0.23.1
++rpds-py==0.24.0
      # via
      #   jsonschema
      #   referencing
-@@ -548,86 +686,91 @@ rsa==4.9
+-rsa==4.9
++rsa==4.9.1
      # via
      #   google-auth
      #   oauth2client
@@ -818,7 +847,7 @@ index fa15911..641e5ff 100644
 +    # via keyring
  send2trash==1.8.3
      # via jupyter-server
-+shapely==2.0.7
++shapely==2.1.0
 +    # via google-cloud-aiplatform
  six==1.17.0
      # via
@@ -840,9 +869,10 @@ index fa15911..641e5ff 100644
      #   tensorflow-model-analysis
  sniffio==1.3.1
      # via anyio
+-soupsieve==2.6
 +sortedcontainers==2.4.0
 +    # via apache-beam
- soupsieve==2.6
++soupsieve==2.7
      # via beautifulsoup4
  sqlparse==0.5.3
      # via google-cloud-spanner
@@ -895,7 +925,7 @@ index fa15911..641e5ff 100644
 +    #   -r backend/src/apiserver/visualization/requirements.in
      #   tfx-bsl
 -termcolor==2.4.0
-+termcolor==2.5.0
++termcolor==3.0.1
      # via tensorflow
  terminado==0.18.1
      # via
@@ -906,7 +936,8 @@ index fa15911..641e5ff 100644
      # via
      #   tensorflow-data-validation
      #   tensorflow-model-analysis
- threadpoolctl==3.5.0
+-threadpoolctl==3.5.0
++threadpoolctl==3.6.0
      # via scikit-learn
 -tinycss2==1.2.1
 +tinycss2==1.4.0
@@ -915,12 +946,12 @@ index fa15911..641e5ff 100644
 -    # via jupyterlab
  tornado==6.4.2
      # via
--    #   -r -
+     -    #   -r -
 +    #   -r backend/src/apiserver/visualization/requirements.in
      #   bokeh
      #   ipykernel
      #   jupyter-client
-@@ -635,6 +778,8 @@ tornado==6.4.2
+@@ -635,6 +782,8 @@ tornado==6.4.2
      #   jupyterlab
      #   notebook
      #   terminado
@@ -929,7 +960,7 @@ index fa15911..641e5ff 100644
  traitlets==5.14.3
      # via
      #   comm
-@@ -646,6 +791,7 @@ traitlets==5.14.3
+@@ -646,28 +795,37 @@ traitlets==5.14.3
      #   jupyter-events
      #   jupyter-server
      #   jupyterlab
@@ -937,7 +968,10 @@ index fa15911..641e5ff 100644
      #   nbclient
      #   nbconvert
      #   nbformat
-@@ -655,19 +801,24 @@ typing-extensions==4.12.2
+ types-python-dateutil==2.9.0.20241206
+     # via arrow
+-typing-extensions==4.12.2
++typing-extensions==4.13.2
      # via
      #   anyio
      #   apache-beam
@@ -953,12 +987,15 @@ index fa15911..641e5ff 100644
 +    #   pydantic-core
 +    #   referencing
      #   tensorflow
++    #   typing-inspection
++typing-inspection==0.4.0
++    # via pydantic
  uri-template==1.3.0
      # via jsonschema
  uritemplate==3.0.1
      # via google-api-python-client
 -urllib3==2.2.3
-+urllib3==2.3.0
++urllib3==2.4.0
      # via requests
  wcwidth==0.2.13
      # via prompt-toolkit
@@ -967,7 +1004,7 @@ index fa15911..641e5ff 100644
      # via jsonschema
  webencodings==0.5.1
      # via
-@@ -675,20 +826,20 @@ webencodings==0.5.1
+@@ -675,20 +833,20 @@ webencodings==0.5.1
      #   tinycss2
  websocket-client==1.8.0
      # via jupyter-server
