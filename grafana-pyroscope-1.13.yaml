@@ -33,8 +33,8 @@ pipeline:
 
   - name: remove oauth2-references
     runs: |
-      sed -i '#github.com/oauth2-proxy/oauth2-proxy/v7#d' go.mod
-      sed -i '#github.com/oauth2-proxy/oauth2-proxy/v7#d' go.sum
+      sed -i '/oauth2-proxy/d' go.mod
+      sed -i '/oauth2-proxy/d' go.sum
 
   - runs: |
       # https://github.com/grafana/pyroscope/blob/3da96b8e449de267d4663e14207b8b272f9edc6d/.github/workflows/release.yml#L48C14-L48C33
