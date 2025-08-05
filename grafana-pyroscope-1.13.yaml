@@ -25,8 +25,16 @@ pipeline:
       expected-commit: 73ae7cf6d4f3c6724b07f437345bd201b5382d23
       repository: https://github.com/grafana/pyroscope
       tag: v${{package.version}}
-      cherry-picks: |
-        main/21136bae3f161c7a62a8481551919c20d4e52d28: Remove oauth2-proxy
+
+  - uses: patch
+    with:
+      patches:
+        remove-oauth2-proxy.patch
+
+  - name: remove oauth2-references
+    runs: |
+      sed -i '#github.com/oauth2-proxy/oauth2-proxy/v7#d' go.mod
+      sed -i '#github.com/oauth2-proxy/oauth2-proxy/v7#d' go.sum
 
   - runs: |
       # https://github.com/grafana/pyroscope/blob/3da96b8e449de267d4663e14207b8b272f9edc6d/.github/workflows/release.yml#L48C14-L48C33
