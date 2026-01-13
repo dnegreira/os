@@ -1,7 +1,7 @@
 package:
   name: coredns-1.13
   version: "1.13.2"
-  epoch: 1 # GHSA-cfpf-hrx2-8rv6
+  epoch: 2 # GHSA-527x-5wrf-22m2
   description: CoreDNS is a DNS server that chains plugins
   copyright:
     - license: Apache-2.0
@@ -24,6 +24,10 @@ pipeline:
       expected-commit: 0233f3e7c600b730426628f2cf9c829d404a181f
       repository: https://github.com/coredns/coredns
       tag: v${{package.version}}
+
+  - uses: patch
+    with:
+      patches: GHSA-527x-5wrf-22m2.patch
 
   - uses: go/bump
     with:
